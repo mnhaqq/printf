@@ -8,9 +8,9 @@
 #include <unistd.h>
 #include <string.h>
 
-
 /* Prototype */
 int _printf(const char *format, ...);
 int _putchar(char c);
+int _strlen(char *s);
 
 #endif /* MAIN_H */
