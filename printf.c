@@ -1,39 +1,49 @@
 #include "main.h"
 
 /**
- *_printf - function to print a string unto terminal
- *@format: string to be printed
- *Return: number of characters printed
+ * _printf - prints out formatted strings to stdout
+ * @format: first argument of the printf()
+ * Return:  return the number of character printed
  */
+
 int _printf(const char *format, ...)
 {
-	int i, length;
-	char c;
-	char *s;
 	va_list args;
+	int i, length;
+
+	length = 0;
 
 	va_start(args, format);
-	for (i = 0; format[i] != '\0'; i++)
+
+	for (i = 0; format[i] != '\0' ; i++)
 	{
-		if (format[i] == '%' && format[i + 1] == 'c')
+		if (format[i] != '%')
 		{
-			c = va_arg(args, int);
-			_putchar(c);
+			write(1, &format[i], 1);
 			length++;
-			i++;
-			continue;
 		}
-		if (format[i] == '%' && format[i + 1] == 's')
+		else
 		{
-			s = va_arg(args, char *);
-			write(1, s, _strlen(s));
-			length += _strlen(s) - 1;
-			i++;
-			continue;
+			if (format[i + 1] == 'c')
+			{
+				char c = va_arg(args, int);
+
+				_putchar(c);
+
+				length++;
+				i++;
+			}
+			if (format[i + 1] == 's')
+			{
+				char *str = va_arg(args, char*);
+
+				write(1, str, strlen(str));
+
+				length += strlen(str);
+				i++;
+			}
 		}
-		c = format[i];
-		_putchar(c);
-		length++;
+
 	}
 	va_end(args);
 	return (length);
