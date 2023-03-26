@@ -1,50 +1,62 @@
 #include "main.h"
 
 /**
- * _printf - prints out formatted strings to stdout
- * @format: first argument of the printf()
- * Return:  return the number of character printed
+ * _printf - produces output according to a format.
+ * @format: character string containing zero or more directives.
+ *
+ * Return: number of characters printed (excluding the null byte used to end output to strings)
  */
-
 int _printf(const char *format, ...)
 {
 	va_list args;
 	int i, length;
-
-	length = 0;
+	char c, *s;
 
 	va_start(args, format);
-
-	for (i = 0; format[i] != '\0' ; i++)
+	for (i = 0, length = 0; format && format[i]; i++)
 	{
 		if (format[i] != '%')
 		{
-			write(1, &format[i], 1);
+			putchar(format[i]);
 			length++;
+			continue;
 		}
-		else
+
+		switch (format[i + 1])
 		{
-			if (format[i + 1] == 'c')
-			{
-				char c = va_arg(args, int);
-
-				_putchar(c);
-
+			case 'c':
+				c = va_arg(args, int);
+				putchar(c);
 				length++;
-				i++;
-			}
-			if (format[i + 1] == 's')
-			{
-				char *str = va_arg(args, char*);
+				break;
 
-				write(1, str, _strlen(str));
+			case 's':
+				s = va_arg(args, char *);
+				if (!s)
+					s = "(null)";
+				while (*s)
+				{
+					putchar(*s++);
+					length++;
+				}
+				break;
 
-				length += _strlen(str);
-				i++;
-			}
+			case '%':
+				putchar('%');
+				length++;
+				break;
+
+			default:
+				putchar('%');
+				putchar(format[i + 1]);
+				length += 2;
 		}
 
+		i++;
 	}
+
 	va_end(args);
+
 	return (length);
 }
+
