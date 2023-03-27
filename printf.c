@@ -5,8 +5,8 @@
  * Return: the number of characters printed, excluding the null byte
  */
 int _printf(const char *format, ...)
-{
-	va_list args;
+{	va_list args;
+	char *s;
 	int i = 0, count = 0;
 
 	if (format == NULL)
@@ -23,7 +23,10 @@ int _printf(const char *format, ...)
 				i += 2;
 				break;
 			case 's': /* string conversion specifier */
-				count += _puts(va_arg(args, char *));
+				s = va_arg(args, char *);
+				if (s == NULL)
+					s = "(null)";
+				count += _puts(s);
 				i += 2;
 				break;
 			case '%': /* percent conversion specifier */
@@ -32,7 +35,6 @@ int _printf(const char *format, ...)
 				break;
 			case '\0': /* null byte check */
 				return (-1);
-
 			default: /* no conversion specifiers */
 				count += _putchar(format[i]);
 				i++;
@@ -44,5 +46,4 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
-	return (count);
-}
+	return (count); }
