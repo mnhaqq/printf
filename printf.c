@@ -7,42 +7,42 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i, count;
+	int i = 0, count = 0;
 
 	va_start(args, format);
-	for (i = count = 0; format[i] != '\0'; i++)
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			switch (format[i + 1])
 			{
-				case 'c': /* character conversion specifier */
-					count += _putchar(va_arg(args, int));
-					i += 2;
-					break;
-				case 's': /* string conversion specifier */
-					count += _puts(va_arg(args, char *));
-					i += 2;
-					break;
-				case '%': /* percent conversion specifier */
-					count += _putchar('%');
-					i += 2;
-					break;
-				case '\'':
-					if (format[i + 2] == 0)
-						return (-1);
-					count += _putchar('\'');
-					break;
-				case 0: /* null byte check */
-					return (-1);
-				default: /* no conversion specifiers */
-					count += _putchar(format[i]);
-					i++;
-					break;
+			case 'c': /* character conversion specifier */
+				count += _putchar(va_arg(args, int));
+				i += 2;
+				break;
+
+			case 's': /* string conversion specifier */
+				count += _puts(va_arg(args, char *));
+				i += 2;
+				break;
+
+			case '%': /* percent conversion specifier */
+				count += _putchar('%');
+				i += 2;
+				break;
+
+			case '\0': /* null byte check */
+				return (-1);
+
+			default: /* no conversion specifiers */
+				count += _putchar(format[i]);
+				i++;
+				break;
 			}
 			continue;
 		}
 		count += _putchar(format[i]);
+		i++;
 	}
 	va_end(args);
 	return (count);
