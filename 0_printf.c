@@ -2,7 +2,6 @@
 /**
  * _printf - a function that produces output according to a format
  * @format: character string that directs the format of the output
- *
  * Return: the number of characters printed, excluding the null byte
  */
 int _printf(const char *format, ...)
@@ -11,7 +10,7 @@ int _printf(const char *format, ...)
 	int i = 0, count = 0;
 
 	va_start(args, format);
-	while (format && format[i])
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
@@ -32,20 +31,19 @@ int _printf(const char *format, ...)
 					i += 2;
 					break;
 
-				default: /* unknown conversion specifier */
-					count += _putchar('%');
-					count += _putchar(format[i + 1]);
-					i += 2;
+				case '\0': /* null byte check */
+					return (-1);
+
+				default: /* no conversion specifiers */
+					count += _putchar(format[i]);
+					i++;
 					break;
 			}
+			continue;
 		}
-		else
-		{
-			count += _putchar(format[i]);
-			i++;
-		}
+		count += _putchar(format[i]);
+		i++;
 	}
 	va_end(args);
 	return (count);
 }
-
