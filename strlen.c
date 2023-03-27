@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 /**
  *_strlen - calculate length of string
  *@s: string
@@ -8,10 +10,15 @@ int _strlen(char *s)
 {
 	int i;
 
-	for (i = 0; s[i] != '\0'; i++)
+	if (s != NULL)
 	{
-	}
-	i++;
 
-	return (i);
+		for (i = 0; s[i] != '\0'; i++)
+		{
+		
+		}
+		return(i);
+	}
+
+	return (0);
 }
