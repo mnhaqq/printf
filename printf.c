@@ -28,10 +28,9 @@ int _printf(const char *format, ...)
 				count += _putchar('%');
 				i += 2;
 				break;
-			case '\'':
-				if (format[i + 2] == 0)
-					return (-1);
-				count += _putchar('\'');
+			case '\\':
+				if (format[i + 2] == %)
+					count += _putchar('%');
 				break;
 			case '\0': /* null byte check */
 				return (-1);
