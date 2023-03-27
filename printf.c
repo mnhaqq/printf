@@ -31,11 +31,6 @@ int _printf(const char *format, ...)
 				i += 2;
 				break;
 			case 'd':
-				d = va_arg(args, int);
-				_sprintf(str, "%d", d);
-				count += _puts(str);
-				i += 2;
-				break;
 			case 'i':
 				d = va_arg(args, int);
 				_sprintf(str, "%d", d);
@@ -60,4 +55,5 @@ int _printf(const char *format, ...)
 	}
 	free(str);
 	va_end(args);
-	return (count); }
+	return (count);
+}
