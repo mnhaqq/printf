@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdarg.h>
+#include "main.h"
 
 /**
  * _sprintf - a custom implementation of sprintf
