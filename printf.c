@@ -7,8 +7,11 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
+	char *s;
 	int i = 0, count = 0;
 
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
 	while (format[i] != '\0')
 	{
@@ -27,10 +30,6 @@ int _printf(const char *format, ...)
 			case '%': /* percent conversion specifier */
 				count += _putchar('%');
 				i += 2;
-				break;
-			case '\\':
-				if (format[i + 2] == '%')
-					count += _putchar('%');
 				break;
 			case '\0': /* null byte check */
 				return (-1);
