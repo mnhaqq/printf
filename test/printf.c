@@ -7,7 +7,7 @@
 int _printf(const char *format, ...)
 {	va_list args;
 	char *s;
-	char *str = malloc(20 * sizeof(char));
+	char *str = malloc(20 * sizeof(char));	
 	int i = 0, count = 0, d;
 
 	if (format == NULL)
