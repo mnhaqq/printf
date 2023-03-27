@@ -7,7 +7,6 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	char *s;
 	int i = 0, count = 0;
 
 	if (format == NULL)
