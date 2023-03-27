@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 				i += 2;
 				break;
 			case '\\':
-				if (format[i + 2] == %)
+				if (format[i + 2] == '%')
 					count += _putchar('%');
 				break;
 			case '\0': /* null byte check */
