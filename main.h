@@ -15,4 +15,3 @@ int _puts(char *s);
 int _strlen(char *s);
 
 #endif /* MAIN_H */
-~                      
