@@ -58,5 +58,6 @@ int _printf(const char *format, ...)
 		count += _putchar(format[i]);
 		i++;
 	}
+	free(str);
 	va_end(args);
 	return (count); }
