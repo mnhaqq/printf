@@ -1,6 +1,4 @@
-#include <stdio.h>
-
-int _putchar(char c);
+#include "main.h"
 
 /**
  * _puts - a function which prints a string to stdout
