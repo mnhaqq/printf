@@ -20,17 +20,19 @@ int _printf(const char *format, ...)
 				count += _putchar(va_arg(args, int));
 				i += 2;
 				break;
-
 			case 's': /* string conversion specifier */
 				count += _puts(va_arg(args, char *));
 				i += 2;
 				break;
-
 			case '%': /* percent conversion specifier */
 				count += _putchar('%');
 				i += 2;
 				break;
-
+			case '\'':
+				if (format[i + 2] == 0)
+					return (-1);
+				count += _putchar('\'');
+				break;
 			case '\0': /* null byte check */
 				return (-1);
 
