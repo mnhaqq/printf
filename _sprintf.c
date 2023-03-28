@@ -1,25 +1,40 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 /**
- * _sprintf - a custom implementation of sprintf
- * @str: pointer to the destination buffer
- * @format: pointer to a format string
+ * _sprintf - Formats and prints data to a string
+ * @str: The string buffer to write to
+ * @format: The format string
+ * @...: Optional arguments to format
  *
- * Return: the number of characters written to the buffer (excluding null byte)
+ * Return: The number of characters written to the buffer, excluding the null
+ * byte, or -1 if an unsupported conversion specifier was encountered
  */
 int _sprintf(char *str, const char *format, ...)
 {
 	va_list args;
-	int i = 0, written = 0;
+	int written = 0, i = 0;
+
+	if (str == NULL)
+	{
+		return (-1);
+	}
+
+	if (format == NULL)
+	{
+		str[0] = '\0';
+		return (0);
+	}
 
 	va_start(args, format);
+
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
 
-			if (format[i] == 'd')
+			if (format[i] == 'd' || format[i] == 'i')
 			{
 				int num = va_arg(args, int);
 

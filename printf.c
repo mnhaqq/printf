@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * _printf - a function that produces output according to a format
  * @format: character string that directs the format of the output
@@ -9,6 +10,12 @@ int _printf(const char *format, ...)
 	char *s;
 	char *str = malloc(20 * sizeof(char));
 	int i = 0, count = 0, d;
+
+	if (str == NULL)
+	{
+		_puts("Failed to allocate memory");
+		return (1);
+	}
 
 	if (format == NULL)
 		return (-1);
