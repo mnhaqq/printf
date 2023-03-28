@@ -16,7 +16,6 @@ int _printf(const char *format, ...)
 		_puts("Failed to allocate memory");
 		return (1);
 	}
-
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);

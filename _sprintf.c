@@ -13,56 +13,39 @@
 int _sprintf(char *str, const char *format, ...)
 {
 	va_list args;
-	int written = 0, i = 0;
+	int num, written = 0, i = 0;
+	char *s;
 
 	if (str == NULL)
-	{
 		return (-1);
-	}
-
 	if (format == NULL)
 	{
 		str[0] = '\0';
 		return (0);
 	}
-
 	va_start(args, format);
-
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
-
 			if (format[i] == 'd' || format[i] == 'i')
 			{
-				int num = va_arg(args, int);
-
+				num = va_arg(args, int);
 				written += sprintf(str + written, "%d", num);
 			}
 			else if (format[i] == 's')
 			{
-				char *s = va_arg(args, char *);
-
+				s = va_arg(args, char *);
 				written += sprintf(str + written, "%s", s);
 			}
 			else
-			{
 				return (-1);
-			}
 		}
 		else
-		{
 			str[written++] = format[i];
-		}
-
-		i++;
-	}
-
+		i++;	}
 	str[written] = '\0';
-
 	va_end(args);
-
 	return (written);
 }
-
