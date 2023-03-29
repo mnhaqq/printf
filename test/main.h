@@ -14,5 +14,6 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 int _puts(char *s);
 int _strlen(char *s);
+int convert(int b);
 
 #endif /* MAIN_H */

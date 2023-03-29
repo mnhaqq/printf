@@ -14,5 +14,6 @@ int _sprintf(char *str, const char *format, ...);
 int _putchar(char c);
 int _puts(char *s);
 int _strlen(char *s);
+int convert(int n);
 
 #endif /* MAIN_H */

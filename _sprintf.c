@@ -29,7 +29,7 @@ int _sprintf(char *str, const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == 'd' || format[i] == 'i')
+			if (format[i] == 'd' || format[i] == 'i' || format[i] == 'b')
 			{
 				num = va_arg(args, int);
 				written += sprintf(str + written, "%d", num);

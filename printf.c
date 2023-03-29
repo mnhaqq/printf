@@ -43,6 +43,13 @@ int _printf(const char *format, ...)
 				count += _puts(str);
 				i += 2;
 				break;
+			case 'b':
+				d = va_arg(args, int);
+				d = convert(d);
+				_sprintf(str, "%d", d);
+				count += _puts(str);
+				i += 2;
+				break;
 			case '%': /* percent conversion specifier */
 				count += _putchar('%');
 				i += 2;
